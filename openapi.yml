@@ -48,7 +48,8 @@ paths:
     get:
       operationId: API.schema
       summary: View the API Schema.
-      description: View this API schema document from a live server instance.
+      description: |
+        View this API schema document from a live server instance. The server will additionally provide its current `version` information. 
       tags:
       - API
       parameters: []
@@ -62,11 +63,8 @@ paths:
     post:
       operationId: API.query
       summary: Query the LAMP Database.
-      description: Query the LAMP Database using a transformation document. All GET
-        operations in this API schema document are available by replacing the period
-        with an underscore (i.e. `$Participant_view(...)` instead of `Participant.view(...)`).
-        The `origin`, `from`, and `to` parameters of EventStream functions are preserved
-        but the `transform` parameter is not.
+      description: |
+        Query the LAMP Database using a transformation document. All GET operations in this API schema document are available by replacing the period with an underscore (i.e. `$Participant_view(...)` instead of `Participant.view(...)`). The `origin`, `from`, and `to` parameters of EventStream functions are preserved but the `transform` parameter is not. For more information on JSONata expressions, [see the documentation here.](https://docs.lamp.digital/data_science/jsonata)
       tags:
       - API
       parameters: []
@@ -170,11 +168,7 @@ paths:
       description: List all ActivitySpecs.
       tags:
       - ActivitySpec
-      parameters:
-      - name: transform
-        in: query
-        schema:
-          type: string
+      parameters: []
       responses:
         '200':
           description: Success
@@ -216,7 +210,7 @@ paths:
           # function-specific sample code here
   "/activity_spec/{id}":
     put:
-      operationId: ActivitySpec.update
+      operationId: ActivitySpec.set
       summary: Update an ActivitySpec.
       description: Update an ActivitySpec.
       tags:
@@ -331,10 +325,6 @@ paths:
         required: true
         schema:
           type: string
-      - name: transform
-        in: query
-        schema:
-          type: string
       responses:
         '200':
           description: Success
@@ -432,11 +422,7 @@ paths:
       description: List all SensorSpecs.
       tags:
       - SensorSpec
-      parameters:
-      - name: transform
-        in: query
-        schema:
-          type: string
+      parameters: []
       responses:
         '200':
           description: Success
@@ -478,7 +464,7 @@ paths:
           # function-specific sample code here
   "/sensor_spec/{id}":
     put:
-      operationId: SensorSpec.update
+      operationId: SensorSpec.set
       summary: Update a SensorSpec.
       description: Update a SensorSpec.
       tags:
@@ -593,10 +579,6 @@ paths:
         required: true
         schema:
           type: string
-      - name: transform
-        in: query
-        schema:
-          type: string
       responses:
         '200':
           description: Success
@@ -694,11 +676,7 @@ paths:
       description: List all TagSpecs.
       tags:
       - TagSpec
-      parameters:
-      - name: transform
-        in: query
-        schema:
-          type: string
+      parameters: []
       responses:
         '200':
           description: Success
@@ -740,7 +718,7 @@ paths:
           # function-specific sample code here
   "/tag_spec/{id}":
     put:
-      operationId: TagSpec.update
+      operationId: TagSpec.set
       summary: Update an TagSpec.
       description: Update an TagSpec.
       tags:
@@ -855,10 +833,6 @@ paths:
         required: true
         schema:
           type: string
-      - name: transform
-        in: query
-        schema:
-          type: string
       responses:
         '200':
           description: Success
@@ -957,11 +931,7 @@ paths:
       description: This action requires system administrator privileges.
       tags:
       - Researcher
-      parameters:
-      - name: transform
-        in: query
-        schema:
-          type: string
+      parameters: []
       responses:
         '200':
           description: Content Available
@@ -1003,7 +973,7 @@ paths:
           # function-specific sample code here
   "/researcher/{id}":
     put:
-      operationId: Researcher.update
+      operationId: Researcher.set
       summary: Update a Researcher.
       description: Update a Researcher's settings.
       tags:
@@ -1118,10 +1088,6 @@ paths:
         required: true
         schema:
           type: string
-      - name: transform
-        in: query
-        schema:
-          type: string
       responses:
         '200':
           description: Success
@@ -1230,10 +1196,6 @@ paths:
         required: true
         schema:
           type: string
-      - name: transform
-        in: query
-        schema:
-          type: string
       responses:
         '200':
           description: Success
@@ -1275,7 +1237,7 @@ paths:
           # function-specific sample code here
   "/study/{id}":
     put:
-      operationId: Study.update
+      operationId: Study.set
       summary: Update a Study.
       description: Update a Study.
       tags:
@@ -1390,10 +1352,6 @@ paths:
         required: true
         schema:
           type: string
-      - name: transform
-        in: query
-        schema:
-          type: string
       responses:
         '200':
           description: Success
@@ -1502,10 +1460,6 @@ paths:
         required: true
         schema:
           type: string
-      - name: transform
-        in: query
-        schema:
-          type: string
       responses:
         '200':
           description: Success
@@ -1547,7 +1501,7 @@ paths:
           # function-specific sample code here
   "/participant/{id}":
     put:
-      operationId: Participant.update
+      operationId: Participant.set
       summary: Update a Participant.
       description: Update a Participant.
       tags:
@@ -1662,10 +1616,6 @@ paths:
         required: true
         schema:
           type: string
-      - name: transform
-        in: query
-        schema:
-          type: string
       responses:
         '200':
           description: Success
@@ -1774,10 +1724,6 @@ paths:
         required: true
         schema:
           type: string
-      - name: transform
-        in: query
-        schema:
-          type: string
       responses:
         '200':
           description: Success
@@ -1819,7 +1765,7 @@ paths:
           # function-specific sample code here
   "/activity/{id}":
     put:
-      operationId: Activity.update
+      operationId: Activity.set
       summary: Update an Activity.
       description: Update an Activity.
       tags:
@@ -1934,10 +1880,6 @@ paths:
         required: true
         schema:
           type: string
-      - name: transform
-        in: query
-        schema:
-          type: string
       responses:
         '200':
           description: Success
@@ -2046,10 +1988,6 @@ paths:
         required: true
         schema:
           type: string
-      - name: transform
-        in: query
-        schema:
-          type: string
       responses:
         '200':
           description: Success
@@ -2091,7 +2029,7 @@ paths:
           # function-specific sample code here
   "/sensor/{id}":
     put:
-      operationId: Sensor.update
+      operationId: Sensor.set
       summary: Update a Sensor.
       description: Update a Sensor.
       tags:
@@ -2206,10 +2144,6 @@ paths:
         required: true
         schema:
           type: string
-      - name: transform
-        in: query
-        schema:
-          type: string
       responses:
         '200':
           description: Success
@@ -2252,7 +2186,7 @@ paths:
           # function-specific sample code here
   "/participant/{id}/activity":
     get:
-      operationId: Activity.list
+      operationId: Activity.list_shared
       summary: List all Activities in a Study shared by a Participant.
       description: List all Activities available to a Participant.
       tags:
@@ -2261,10 +2195,6 @@ paths:
       - name: id
         in: path
         required: true
-        schema:
-          type: string
-      - name: transform
-        in: query
         schema:
           type: string
       responses:
@@ -2308,7 +2238,7 @@ paths:
           # function-specific sample code here
   "/participant/{id}/sensor":
     get:
-      operationId: Sensor.list
+      operationId: Sensor.list_shared
       summary: List all Sensors in a Study shared by a Participant.
       description: List all Sensors available to a Participant.
       tags:
@@ -2317,10 +2247,6 @@ paths:
       - name: id
         in: path
         required: true
-        schema:
-          type: string
-      - name: transform
-        in: query
         schema:
           type: string
       responses:
@@ -2364,7 +2290,7 @@ paths:
           # function-specific sample code here
   "/activity/{id}/participant":
     get:
-      operationId: Participant.list
+      operationId: Participant.list_shared1
       summary: List all Participants in a Study shared by an Activity.
       description: List all Participants available to an Activity.
       tags:
@@ -2373,10 +2299,6 @@ paths:
       - name: id
         in: path
         required: true
-        schema:
-          type: string
-      - name: transform
-        in: query
         schema:
           type: string
       responses:
@@ -2420,7 +2342,7 @@ paths:
           # function-specific sample code here
   "/sensor/{id}/participant":
     get:
-      operationId: Participant.list
+      operationId: Participant.list_shared2
       summary: List all Participants in a Study shared by a Sensor.
       description: List all Participants available to a Sensor.
       tags:
@@ -2429,10 +2351,6 @@ paths:
       - name: id
         in: path
         required: true
-        schema:
-          type: string
-      - name: transform
-        in: query
         schema:
           type: string
       responses:
@@ -2480,7 +2398,7 @@ paths:
       summary: Create an ActivityEvent for a Participant.
       description: Create an ActivityEvent for a Participant.
       tags:
-      - Participant
+      - ActivityEvent
       parameters:
       - name: id
         in: path
@@ -2539,7 +2457,7 @@ paths:
       summary: Query ActivityEvents for a Participant.
       description: List ActivityEvents produced by a Participant.
       tags:
-      - Participant
+      - ActivityEvent
       parameters:
       - name: id
         in: path
@@ -2574,10 +2492,6 @@ paths:
             values like +1000 return latest events first, while negative values like
             -1000 return earliest events first.
           example: "-10"
-      - name: transform
-        in: query
-        schema:
-          type: string
       responses:
         '200':
           description: Success
@@ -2623,7 +2537,7 @@ paths:
       summary: Create a SensorEvent for a Participant.
       description: Create a SensorEvent for a Participant.
       tags:
-      - Participant
+      - SensorEvent
       parameters:
       - name: id
         in: path
@@ -2682,7 +2596,7 @@ paths:
       summary: Query SensorEvents for a Participant.
       description: List SensorEvents produced by a Participant.
       tags:
-      - Participant
+      - SensorEvent
       parameters:
       - name: id
         in: path
@@ -2717,10 +2631,6 @@ paths:
             values like +1000 return latest events first, while negative values like
             -1000 return earliest events first.
           example: "-10"
-      - name: transform
-        in: query
-        schema:
-          type: string
       responses:
         '200':
           description: Success
@@ -2947,10 +2857,6 @@ paths:
         required: true
         schema:
           type: string
-      - name: transform
-        in: query
-        schema:
-          type: string
       responses:
         '200':
           description: Success
@@ -3047,7 +2953,7 @@ paths:
           # function-specific sample code here
   "/type/{id}/credential/{access_key}":
     put:
-      operationId: Credential.update
+      operationId: Credential.set
       summary: Update a Credential for a Researcher, Study, Participant, Activity, or Sensor.
       description: ''
       tags:
@@ -3172,8 +3078,9 @@ paths:
         required: true
         schema:
           type: string
-      - name: transform
-        in: query
+      - name: access_key
+        in: path
+        required: true
         schema:
           type: string
       responses:
@@ -3227,10 +3134,6 @@ paths:
       - name: id
         in: path
         required: true
-        schema:
-          type: string
-      - name: transform
-        in: query
         schema:
           type: string
       responses:
@@ -3697,6 +3600,29 @@ components:
                   type: number
                   format: double
                   description: The z coordinate of the accelerometer reading.
+                  example: 1.123
+      required:
+      - id
+    TagSpec:
+      type: object
+      description: The TagSpec determines the parameters of Tags and execution of Automations.
+      properties:
+        id:
+          type: string
+          description: The name of the Tag, in reverse-DNS format.
+          example: cortex.survey_groups
+        schema:
+          allOf:
+          - "$ref": "#/components/schemas/JSONSchema"
+          - description: The data definition of a Tag.
+            example:
+              type: object
+              properties:
+                x:
+                  title: X Coordinate
+                  type: number
+                  format: double
+                  description: The x coordinate of the accelerometer reading.
                   example: 1.123
       required:
       - id
