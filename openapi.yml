@@ -63,8 +63,12 @@ paths:
     post:
       operationId: API.query
       summary: Query the LAMP Database.
-      description: |
-        Query the LAMP Database using a transformation document. All GET operations in this API schema document are available by replacing the period with an underscore (i.e. `$Participant_view(...)` instead of `Participant.view(...)`). The `origin`, `from`, and `to` parameters of EventStream functions are preserved but the `transform` parameter is not. For more information on JSONata expressions, [see the documentation here.](https://docs.lamp.digital/data_science/jsonata)
+      description: >
+        Query the LAMP Database using a transformation document. All GET operations in this API schema 
+        document are available by replacing the period with an underscore (i.e. `$Participant_view(...)` 
+        instead of `Participant.view(...)`). The `origin`, `from`, and `to` parameters of EventStream functions 
+        are preserved but the `transform` parameter is not. For more information on JSONata expressions, 
+        [see the documentation here.](https://docs.lamp.digital/data_science/jsonata)
       tags:
       - API
       parameters: []
@@ -928,7 +932,7 @@ paths:
     get:
       operationId: Researcher.list
       summary: List all Researchers.
-      description: |
+      description: >
         This action requires system administrator privileges. The deprecated name for this operation is `Researcher.all`.
       tags:
       - Researcher
@@ -2189,7 +2193,7 @@ paths:
     get:
       operationId: Activity.list_shared
       summary: List all Activities in a Study shared by a Participant.
-      description: **[DEPRECATED: USE `Activity.list` INSTEAD!]** List all Activities available to a Participant.
+      description: "[DEPRECATED: USE `Activity.list` INSTEAD!] List all Activities available to a Participant."
       tags:
       - Activity
       parameters:
@@ -2241,7 +2245,7 @@ paths:
     get:
       operationId: Sensor.list_shared
       summary: List all Sensors in a Study shared by a Participant.
-      description: **[DEPRECATED: USE `Sensor.list` INSTEAD!]** List all Sensors available to a Participant.
+      description: "[DEPRECATED: USE `Sensor.list` INSTEAD!] List all Sensors available to a Participant."
       tags:
       - Sensor
       parameters:
@@ -2293,7 +2297,7 @@ paths:
     get:
       operationId: Participant.list_shared1
       summary: List all Participants in a Study shared by an Activity.
-      description: **[DEPRECATED: USE `Participant.list` INSTEAD!]** List all Participants available to an Activity.
+      description: "[DEPRECATED: USE `Participant.list` INSTEAD!] List all Participants available to an Activity."
       tags:
       - Activity
       parameters:
@@ -2345,7 +2349,7 @@ paths:
     get:
       operationId: Participant.list_shared2
       summary: List all Participants in a Study shared by a Sensor.
-      description: **[DEPRECATED: USE `Participant.list` INSTEAD!]** List all Participants available to a Sensor.
+      description: "[DEPRECATED: USE `Participant.list` INSTEAD!] List all Participants available to a Sensor."
       tags:
       - Sensor
       parameters:
