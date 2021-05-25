@@ -23,6 +23,8 @@ tags:
   description: Operations related to the management of ActivitySpecs.
 - name: SensorSpec
   description: Operations related to the management of SensorSpecs.
+- name: TagSpec
+  description: Operations related to the management of TagSpecs.
 - name: Researcher
   description: Operations related to the management of Researchers.
 - name: Study
@@ -33,6 +35,14 @@ tags:
   description: Operations related to the management of Activities.
 - name: Sensor
   description: Operations related to the management of Sensors.
+- name: ActivityEvent
+  description: Operations related to the management of ActivityEvents.
+- name: SensorEvent
+  description: Operations related to the management of SensorEvents.
+- name: Credential
+  description: Operations related to the management of Credentials.
+- name: Tag
+  description: Operations related to the management of Tags.
 paths:
   "/":
     get:
@@ -310,7 +320,7 @@ paths:
           LAMP.connect("api.lamp.digital", "email@address.com", "password")
           # function-specific sample code here
     get:
-      operationId: ActivitySpec.view
+      operationId: ActivitySpec.get
       summary: View an ActivitySpec.
       description: View an ActivitySpec.
       tags:
@@ -572,7 +582,7 @@ paths:
           LAMP.connect("api.lamp.digital", "email@address.com", "password")
           # function-specific sample code here
     get:
-      operationId: SensorSpec.view
+      operationId: SensorSpec.get
       summary: View a SensorSpec.
       description: View a SensorSpec.
       tags:
@@ -599,6 +609,268 @@ paths:
                     type: array
                     items:
                       "$ref": "#/components/schemas/SensorSpec"
+                    maxLength: 1
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Error"
+      security:
+      - Authorization: []
+      x-code-samples:
+      - lang: js
+        label: JavaScript
+        source: |
+          import LAMP from 'lamp-core'
+          await LAMP.connect({ serverAddress: "api.lamp.digital", accessKey: "email@address.com", secretKey: "password" })
+          // function-specific sample code here
+      - lang: python
+        label: Python
+        source: |
+          import LAMP
+          LAMP.connect("api.lamp.digital", "email@address.com", "password")
+          # function-specific sample code here
+      - lang: go
+        label: R Script
+        source: |
+          library(LAMP)
+          LAMP.connect("api.lamp.digital", "email@address.com", "password")
+          # function-specific sample code here
+  "/tag_spec":
+    post:
+      operationId: TagSpec.create
+      summary: Create an TagSpec.
+      description: Create an TagSpec.
+      tags:
+      - TagSpec
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/TagSpec"
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Error"
+      security:
+      - Authorization: []
+      x-code-samples:
+      - lang: js
+        label: JavaScript
+        source: |
+          import LAMP from 'lamp-core'
+          await LAMP.connect({ serverAddress: "api.lamp.digital", accessKey: "email@address.com", secretKey: "password" })
+          // function-specific sample code here
+      - lang: python
+        label: Python
+        source: |
+          import LAMP
+          LAMP.connect("api.lamp.digital", "email@address.com", "password")
+          # function-specific sample code here
+      - lang: go
+        label: R Script
+        source: |
+          library(LAMP)
+          LAMP.connect("api.lamp.digital", "email@address.com", "password")
+          # function-specific sample code here
+    get:
+      operationId: TagSpec.list
+      summary: List all TagSpecs.
+      description: List all TagSpecs.
+      tags:
+      - TagSpec
+      parameters:
+      - name: transform
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      "$ref": "#/components/schemas/TagSpec"
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Error"
+      security:
+      - Authorization: []
+      x-code-samples:
+      - lang: js
+        label: JavaScript
+        source: |
+          import LAMP from 'lamp-core'
+          await LAMP.connect({ serverAddress: "api.lamp.digital", accessKey: "email@address.com", secretKey: "password" })
+          // function-specific sample code here
+      - lang: python
+        label: Python
+        source: |
+          import LAMP
+          LAMP.connect("api.lamp.digital", "email@address.com", "password")
+          # function-specific sample code here
+      - lang: go
+        label: R Script
+        source: |
+          library(LAMP)
+          LAMP.connect("api.lamp.digital", "email@address.com", "password")
+          # function-specific sample code here
+  "/tag_spec/{id}":
+    put:
+      operationId: TagSpec.update
+      summary: Update an TagSpec.
+      description: Update an TagSpec.
+      tags:
+      - TagSpec
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/TagSpec"
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Error"
+      security:
+      - Authorization: []
+      x-code-samples:
+      - lang: js
+        label: JavaScript
+        source: |
+          import LAMP from 'lamp-core'
+          await LAMP.connect({ serverAddress: "api.lamp.digital", accessKey: "email@address.com", secretKey: "password" })
+          // function-specific sample code here
+      - lang: python
+        label: Python
+        source: |
+          import LAMP
+          LAMP.connect("api.lamp.digital", "email@address.com", "password")
+          # function-specific sample code here
+      - lang: go
+        label: R Script
+        source: |
+          library(LAMP)
+          LAMP.connect("api.lamp.digital", "email@address.com", "password")
+          # function-specific sample code here
+    delete:
+      operationId: TagSpec.delete
+      summary: Delete an TagSpec.
+      description: Delete an TagSpec.
+      tags:
+      - TagSpec
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Error"
+      security:
+      - Authorization: []
+      x-code-samples:
+      - lang: js
+        label: JavaScript
+        source: |
+          import LAMP from 'lamp-core'
+          await LAMP.connect({ serverAddress: "api.lamp.digital", accessKey: "email@address.com", secretKey: "password" })
+          // function-specific sample code here
+      - lang: python
+        label: Python
+        source: |
+          import LAMP
+          LAMP.connect("api.lamp.digital", "email@address.com", "password")
+          # function-specific sample code here
+      - lang: go
+        label: R Script
+        source: |
+          library(LAMP)
+          LAMP.connect("api.lamp.digital", "email@address.com", "password")
+          # function-specific sample code here
+    get:
+      operationId: TagSpec.get
+      summary: View an TagSpec.
+      description: View an TagSpec.
+      tags:
+      - TagSpec
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: transform
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      "$ref": "#/components/schemas/TagSpec"
                     maxLength: 1
         default:
           description: Error
@@ -835,7 +1107,7 @@ paths:
           LAMP.connect("api.lamp.digital", "email@address.com", "password")
           # function-specific sample code here
     get:
-      operationId: Researcher.view
+      operationId: Researcher.get
       summary: View a Researcher.
       description: View a Researcher.
       tags:
@@ -892,7 +1164,7 @@ paths:
           # function-specific sample code here
   "/researcher/{id}/study":
     post:
-      operationId: Researcher.create_study
+      operationId: Study.create
       summary: Create a Study for a Researcher.
       description: Create a Study for a Researcher.
       tags:
@@ -947,7 +1219,7 @@ paths:
           LAMP.connect("api.lamp.digital", "email@address.com", "password")
           # function-specific sample code here
     get:
-      operationId: Researcher.list_studies
+      operationId: Study.list
       summary: List all Studies for a Researcher.
       description: List all studies for a Researcher.
       tags:
@@ -1107,7 +1379,7 @@ paths:
           LAMP.connect("api.lamp.digital", "email@address.com", "password")
           # function-specific sample code here
     get:
-      operationId: Study.view
+      operationId: Study.get
       summary: View a Study.
       description: View a Study.
       tags:
@@ -1164,7 +1436,7 @@ paths:
           # function-specific sample code here
   "/study/{id}/participant":
     post:
-      operationId: Study.create_participant
+      operationId: Participant.create
       summary: Create a Participant for a Study.
       description: Create a Participant for a Study.
       tags:
@@ -1219,7 +1491,7 @@ paths:
           LAMP.connect("api.lamp.digital", "email@address.com", "password")
           # function-specific sample code here
     get:
-      operationId: Study.list_participants
+      operationId: Participant.list
       summary: List all Participants for a Study.
       description: List all Participants in a Study.
       tags:
@@ -1379,7 +1651,7 @@ paths:
           LAMP.connect("api.lamp.digital", "email@address.com", "password")
           # function-specific sample code here
     get:
-      operationId: Participant.view
+      operationId: Participant.get
       summary: View a Participant.
       description: Get a single participant, by identifier.
       tags:
@@ -1436,7 +1708,7 @@ paths:
           # function-specific sample code here
   "/study/{id}/activity":
     post:
-      operationId: Study.create_activity
+      operationId: Activity.create
       summary: Create an Activity for a Study.
       description: Create an Activity for a Study.
       tags:
@@ -1491,7 +1763,7 @@ paths:
           LAMP.connect("api.lamp.digital", "email@address.com", "password")
           # function-specific sample code here
     get:
-      operationId: Study.list_activities
+      operationId: Activity.list
       summary: List all Activities for a Study.
       description: List all Activities available to Participants of a Study.
       tags:
@@ -1651,7 +1923,7 @@ paths:
           LAMP.connect("api.lamp.digital", "email@address.com", "password")
           # function-specific sample code here
     get:
-      operationId: Activity.view
+      operationId: Activity.get
       summary: View an Activity.
       description: View an Activity.
       tags:
@@ -1708,7 +1980,7 @@ paths:
           # function-specific sample code here
   "/study/{id}/sensor":
     post:
-      operationId: Study.create_sensor
+      operationId: Sensor.create
       summary: Create a Sensor for a Study.
       description: Create a Sensor for a Study.
       tags:
@@ -1763,7 +2035,7 @@ paths:
           LAMP.connect("api.lamp.digital", "email@address.com", "password")
           # function-specific sample code here
     get:
-      operationId: Study.list_sensors
+      operationId: Sensor.list
       summary: List all Sensors in a Study.
       description: List all Sensors available to Participants of a Study.
       tags:
@@ -1923,7 +2195,7 @@ paths:
           LAMP.connect("api.lamp.digital", "email@address.com", "password")
           # function-specific sample code here
     get:
-      operationId: Sensor.view
+      operationId: Sensor.get
       summary: View a Sensor.
       description: View a Sensor.
       tags:
@@ -1980,7 +2252,7 @@ paths:
           # function-specific sample code here
   "/participant/{id}/activity":
     get:
-      operationId: Participant.list_activities
+      operationId: Activity.list
       summary: List all Activities in a Study shared by a Participant.
       description: List all Activities available to a Participant.
       tags:
@@ -2036,7 +2308,7 @@ paths:
           # function-specific sample code here
   "/participant/{id}/sensor":
     get:
-      operationId: Participant.list_sensors
+      operationId: Sensor.list
       summary: List all Sensors in a Study shared by a Participant.
       description: List all Sensors available to a Participant.
       tags:
@@ -2092,7 +2364,7 @@ paths:
           # function-specific sample code here
   "/activity/{id}/participant":
     get:
-      operationId: Activity.list_participants
+      operationId: Participant.list
       summary: List all Participants in a Study shared by an Activity.
       description: List all Participants available to an Activity.
       tags:
@@ -2148,7 +2420,7 @@ paths:
           # function-specific sample code here
   "/sensor/{id}/participant":
     get:
-      operationId: Sensor.list_participants
+      operationId: Participant.list
       summary: List all Participants in a Study shared by a Sensor.
       description: List all Participants available to a Sensor.
       tags:
@@ -2204,7 +2476,7 @@ paths:
           # function-specific sample code here
   "/participant/{id}/activity_event":
     post:
-      operationId: Participant.create_activity_events
+      operationId: ActivityEvent.create
       summary: Create an ActivityEvent for a Participant.
       description: Create an ActivityEvent for a Participant.
       tags:
@@ -2263,7 +2535,7 @@ paths:
           LAMP.connect("api.lamp.digital", "email@address.com", "password")
           # function-specific sample code here
     get:
-      operationId: Participant.query_activity_events
+      operationId: ActivityEvent.list
       summary: Query ActivityEvents for a Participant.
       description: List ActivityEvents produced by a Participant.
       tags:
@@ -2347,7 +2619,7 @@ paths:
           # function-specific sample code here
   "/participant/{id}/sensor_event":
     post:
-      operationId: Participant.create_sensor_events
+      operationId: SensorEvent.create
       summary: Create a SensorEvent for a Participant.
       description: Create a SensorEvent for a Participant.
       tags:
@@ -2406,7 +2678,7 @@ paths:
           LAMP.connect("api.lamp.digital", "email@address.com", "password")
           # function-specific sample code here
     get:
-      operationId: Participant.query_sensor_events
+      operationId: SensorEvent.list
       summary: Query SensorEvents for a Participant.
       description: List SensorEvents produced by a Participant.
       tags:
@@ -2488,13 +2760,13 @@ paths:
           library(LAMP)
           LAMP.connect("api.lamp.digital", "email@address.com", "password")
           # function-specific sample code here
-  "/researcher/{id}/tag":
+  "/type/{id}/tag":
     get:
-      operationId: Researcher.list_tags
-      summary: List all Tags set for or by a Researcher.
+      operationId: Tag.list
+      summary: List all Tags set for or by a Researcher, Study, Participant, Activity, or Sensor.
       description: ''
       tags:
-      - Researcher
+      - Tag
       parameters:
       - name: id
         in: path
@@ -2540,13 +2812,13 @@ paths:
           library(LAMP)
           LAMP.connect("api.lamp.digital", "email@address.com", "password")
           # function-specific sample code here
-  "/researcher/{id}/tag/{key}":
+  "/type/{id}/tag/{key}":
     get:
-      operationId: Researcher.get_tag
-      summary: Get a Tag set for or by a Researcher.
+      operationId: Tag.get
+      summary: Get a Tag set for or by a Researcher, Study, Participant, Activity, or Sensor.
       description: ''
       tags:
-      - Researcher
+      - Tag
       parameters:
       - name: id
         in: path
@@ -2596,13 +2868,13 @@ paths:
           library(LAMP)
           LAMP.connect("api.lamp.digital", "email@address.com", "password")
           # function-specific sample code here
-  "/researcher/{id}/tag/{key}/{target}":
+  "/type/{id}/tag/{key}/{target}":
     put:
-      operationId: Researcher.set_tag
-      summary: Set a Tag for a Researcher or its childen.
+      operationId: Tag.set
+      summary: Set a Tag for a Researcher, Study, Participant, Activity, or Sensor, or its childen.
       description: ''
       tags:
-      - Researcher
+      - Tag
       parameters:
       - name: id
         in: path
@@ -2662,13 +2934,13 @@ paths:
           library(LAMP)
           LAMP.connect("api.lamp.digital", "email@address.com", "password")
           # function-specific sample code here
-  "/researcher/{id}/credential":
+  "/type/{id}/credential":
     get:
-      operationId: Researcher.list_credentials
-      summary: List all Credentials for a Researcher.
+      operationId: Credential.list
+      summary: List all Credentials for a Researcher, Study, Participant, Activity, or Sensor.
       description: ''
       tags:
-      - Researcher
+      - Credential
       parameters:
       - name: id
         in: path
@@ -2719,11 +2991,11 @@ paths:
           LAMP.connect("api.lamp.digital", "email@address.com", "password")
           # function-specific sample code here
     post:
-      operationId: Researcher.create_credential
-      summary: Add a Credential for a Researcher.
+      operationId: Credential.create
+      summary: Add a Credential for a Researcher, Study, Participant, Activity, or Sensor.
       description: ''
       tags:
-      - Researcher
+      - Credential
       parameters:
       - name: id
         in: path
@@ -2773,13 +3045,13 @@ paths:
           library(LAMP)
           LAMP.connect("api.lamp.digital", "email@address.com", "password")
           # function-specific sample code here
-  "/researcher/{id}/credential/{access_key}":
+  "/type/{id}/credential/{access_key}":
     put:
-      operationId: Researcher.update_credential
-      summary: Update a Credential for a Researcher.
+      operationId: Credential.update
+      summary: Update a Credential for a Researcher, Study, Participant, Activity, or Sensor.
       description: ''
       tags:
-      - Researcher
+      - Credential
       parameters:
       - name: id
         in: path
@@ -2835,11 +3107,11 @@ paths:
           LAMP.connect("api.lamp.digital", "email@address.com", "password")
           # function-specific sample code here
     delete:
-      operationId: Researcher.delete_credential
-      summary: Delete a Credential for a Researcher.
+      operationId: Credential.delete
+      summary: Delete a Credential for a Researcher, Study, Participant, Activity, or Sensor.
       description: ''
       tags:
-      - Researcher
+      - Credential
       parameters:
       - name: id
         in: path
@@ -2888,187 +3160,12 @@ paths:
           library(LAMP)
           LAMP.connect("api.lamp.digital", "email@address.com", "password")
           # function-specific sample code here
-  "/study/{id}/tag":
     get:
-      operationId: Study.list_tags
-      summary: List all Tags set for or by a Study.
+      operationId: Credential.get
+      summary: Get a single Credential for a Researcher, Study, Participant, Activity, or Sensor.
       description: ''
       tags:
-      - Study
-      parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: string
-      responses:
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  data:
-                    type: array
-                    items:
-                      type: string
-        default:
-          description: Error
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/Error"
-      security:
-      - Authorization: []
-      x-code-samples:
-      - lang: js
-        label: JavaScript
-        source: |
-          import LAMP from 'lamp-core'
-          await LAMP.connect({ serverAddress: "api.lamp.digital", accessKey: "email@address.com", secretKey: "password" })
-          // function-specific sample code here
-      - lang: python
-        label: Python
-        source: |
-          import LAMP
-          LAMP.connect("api.lamp.digital", "email@address.com", "password")
-          # function-specific sample code here
-      - lang: go
-        label: R Script
-        source: |
-          library(LAMP)
-          LAMP.connect("api.lamp.digital", "email@address.com", "password")
-          # function-specific sample code here
-  "/study/{id}/tag/{key}":
-    get:
-      operationId: Study.get_tag
-      summary: Get a Tag set for or by a Study.
-      description: ''
-      tags:
-      - Study
-      parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: string
-      - name: key
-        in: path
-        required: true
-        schema:
-          type: string
-      responses:
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  data:
-                    type: object
-                    additionalProperties: true
-        default:
-          description: Error
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/Error"
-      security:
-      - Authorization: []
-      x-code-samples:
-      - lang: js
-        label: JavaScript
-        source: |
-          import LAMP from 'lamp-core'
-          await LAMP.connect({ serverAddress: "api.lamp.digital", accessKey: "email@address.com", secretKey: "password" })
-          // function-specific sample code here
-      - lang: python
-        label: Python
-        source: |
-          import LAMP
-          LAMP.connect("api.lamp.digital", "email@address.com", "password")
-          # function-specific sample code here
-      - lang: go
-        label: R Script
-        source: |
-          library(LAMP)
-          LAMP.connect("api.lamp.digital", "email@address.com", "password")
-          # function-specific sample code here
-  "/study/{id}/tag/{key}/{target}":
-    put:
-      operationId: Study.set_tag
-      summary: Set a Tag for a Study or its childen.
-      description: ''
-      tags:
-      - Study
-      parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: string
-      - name: key
-        in: path
-        required: true
-        schema:
-          type: string
-      - name: target
-        in: path
-        required: true
-        schema:
-          type: string
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-      responses:
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  data:
-                    type: object
-        default:
-          description: Error
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/Error"
-      security:
-      - Authorization: []
-      x-code-samples:
-      - lang: js
-        label: JavaScript
-        source: |
-          import LAMP from 'lamp-core'
-          await LAMP.connect({ serverAddress: "api.lamp.digital", accessKey: "email@address.com", secretKey: "password" })
-          // function-specific sample code here
-      - lang: python
-        label: Python
-        source: |
-          import LAMP
-          LAMP.connect("api.lamp.digital", "email@address.com", "password")
-          # function-specific sample code here
-      - lang: go
-        label: R Script
-        source: |
-          library(LAMP)
-          LAMP.connect("api.lamp.digital", "email@address.com", "password")
-          # function-specific sample code here
-  "/study/{id}/credential":
-    get:
-      operationId: Study.list_credentials
-      summary: List all Credentials for a Study.
-      description: ''
-      tags:
-      - Study
+      - Credential
       parameters:
       - name: id
         in: path
@@ -3091,1376 +3188,6 @@ paths:
                     type: array
                     items:
                       "$ref": "#/components/schemas/Credential"
-        default:
-          description: Error
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/Error"
-      security:
-      - Authorization: []
-      x-code-samples:
-      - lang: js
-        label: JavaScript
-        source: |
-          import LAMP from 'lamp-core'
-          await LAMP.connect({ serverAddress: "api.lamp.digital", accessKey: "email@address.com", secretKey: "password" })
-          // function-specific sample code here
-      - lang: python
-        label: Python
-        source: |
-          import LAMP
-          LAMP.connect("api.lamp.digital", "email@address.com", "password")
-          # function-specific sample code here
-      - lang: go
-        label: R Script
-        source: |
-          library(LAMP)
-          LAMP.connect("api.lamp.digital", "email@address.com", "password")
-          # function-specific sample code here
-    post:
-      operationId: Study.create_credential
-      summary: Create a Credential for a Study.
-      description: ''
-      tags:
-      - Study
-      parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: string
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-      responses:
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  data:
-                    type: object
-        default:
-          description: Error
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/Error"
-      security:
-      - Authorization: []
-      x-code-samples:
-      - lang: js
-        label: JavaScript
-        source: |
-          import LAMP from 'lamp-core'
-          await LAMP.connect({ serverAddress: "api.lamp.digital", accessKey: "email@address.com", secretKey: "password" })
-          // function-specific sample code here
-      - lang: python
-        label: Python
-        source: |
-          import LAMP
-          LAMP.connect("api.lamp.digital", "email@address.com", "password")
-          # function-specific sample code here
-      - lang: go
-        label: R Script
-        source: |
-          library(LAMP)
-          LAMP.connect("api.lamp.digital", "email@address.com", "password")
-          # function-specific sample code here
-  "/study/{id}/credential/{access_key}":
-    put:
-      operationId: Study.update_credential
-      summary: Update a Credential for a Study.
-      description: ''
-      tags:
-      - Study
-      parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: string
-      - name: access_key
-        in: path
-        required: true
-        schema:
-          type: string
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-      responses:
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  data:
-                    type: object
-        default:
-          description: Error
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/Error"
-      security:
-      - Authorization: []
-      x-code-samples:
-      - lang: js
-        label: JavaScript
-        source: |
-          import LAMP from 'lamp-core'
-          await LAMP.connect({ serverAddress: "api.lamp.digital", accessKey: "email@address.com", secretKey: "password" })
-          // function-specific sample code here
-      - lang: python
-        label: Python
-        source: |
-          import LAMP
-          LAMP.connect("api.lamp.digital", "email@address.com", "password")
-          # function-specific sample code here
-      - lang: go
-        label: R Script
-        source: |
-          library(LAMP)
-          LAMP.connect("api.lamp.digital", "email@address.com", "password")
-          # function-specific sample code here
-    delete:
-      operationId: Study.delete_credential
-      summary: Delete a Credential for a Study.
-      description: ''
-      tags:
-      - Study
-      parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: string
-      - name: access_key
-        in: path
-        required: true
-        schema:
-          type: string
-      responses:
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  data:
-                    type: object
-        default:
-          description: Error
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/Error"
-      security:
-      - Authorization: []
-      x-code-samples:
-      - lang: js
-        label: JavaScript
-        source: |
-          import LAMP from 'lamp-core'
-          await LAMP.connect({ serverAddress: "api.lamp.digital", accessKey: "email@address.com", secretKey: "password" })
-          // function-specific sample code here
-      - lang: python
-        label: Python
-        source: |
-          import LAMP
-          LAMP.connect("api.lamp.digital", "email@address.com", "password")
-          # function-specific sample code here
-      - lang: go
-        label: R Script
-        source: |
-          library(LAMP)
-          LAMP.connect("api.lamp.digital", "email@address.com", "password")
-          # function-specific sample code here
-  "/participant/{id}/tag":
-    get:
-      operationId: Participant.list_tags
-      summary: List all Tags set for or by a Participant.
-      description: ''
-      tags:
-      - Participant
-      parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: string
-      responses:
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  data:
-                    type: array
-                    items:
-                      type: string
-        default:
-          description: Error
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/Error"
-      security:
-      - Authorization: []
-      x-code-samples:
-      - lang: js
-        label: JavaScript
-        source: |
-          import LAMP from 'lamp-core'
-          await LAMP.connect({ serverAddress: "api.lamp.digital", accessKey: "email@address.com", secretKey: "password" })
-          // function-specific sample code here
-      - lang: python
-        label: Python
-        source: |
-          import LAMP
-          LAMP.connect("api.lamp.digital", "email@address.com", "password")
-          # function-specific sample code here
-      - lang: go
-        label: R Script
-        source: |
-          library(LAMP)
-          LAMP.connect("api.lamp.digital", "email@address.com", "password")
-          # function-specific sample code here
-  "/participant/{id}/tag/{key}":
-    get:
-      operationId: Participant.get_tag
-      summary: Get a Tag set for or by a Participant.
-      description: ''
-      tags:
-      - Participant
-      parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: string
-      - name: key
-        in: path
-        required: true
-        schema:
-          type: string
-      responses:
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  data:
-                    type: object
-                    additionalProperties: true
-        default:
-          description: Error
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/Error"
-      security:
-      - Authorization: []
-      x-code-samples:
-      - lang: js
-        label: JavaScript
-        source: |
-          import LAMP from 'lamp-core'
-          await LAMP.connect({ serverAddress: "api.lamp.digital", accessKey: "email@address.com", secretKey: "password" })
-          // function-specific sample code here
-      - lang: python
-        label: Python
-        source: |
-          import LAMP
-          LAMP.connect("api.lamp.digital", "email@address.com", "password")
-          # function-specific sample code here
-      - lang: go
-        label: R Script
-        source: |
-          library(LAMP)
-          LAMP.connect("api.lamp.digital", "email@address.com", "password")
-          # function-specific sample code here
-  "/participant/{id}/tag/{key}/{target}":
-    put:
-      operationId: Participant.set_tag
-      summary: Set a Tag for the Participant or its childen.
-      description: ''
-      tags:
-      - Participant
-      parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: string
-      - name: key
-        in: path
-        required: true
-        schema:
-          type: string
-      - name: target
-        in: path
-        required: true
-        schema:
-          type: string
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-      responses:
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  data:
-                    type: object
-        default:
-          description: Error
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/Error"
-      security:
-      - Authorization: []
-      x-code-samples:
-      - lang: js
-        label: JavaScript
-        source: |
-          import LAMP from 'lamp-core'
-          await LAMP.connect({ serverAddress: "api.lamp.digital", accessKey: "email@address.com", secretKey: "password" })
-          // function-specific sample code here
-      - lang: python
-        label: Python
-        source: |
-          import LAMP
-          LAMP.connect("api.lamp.digital", "email@address.com", "password")
-          # function-specific sample code here
-      - lang: go
-        label: R Script
-        source: |
-          library(LAMP)
-          LAMP.connect("api.lamp.digital", "email@address.com", "password")
-          # function-specific sample code here
-  "/participant/{id}/credential":
-    get:
-      operationId: Participant.list_credentials
-      summary: List all Credentials for a Participant.
-      description: ''
-      tags:
-      - Participant
-      parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: string
-      - name: transform
-        in: query
-        schema:
-          type: string
-      responses:
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  data:
-                    type: array
-                    items:
-                      "$ref": "#/components/schemas/Credential"
-        default:
-          description: Error
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/Error"
-      security:
-      - Authorization: []
-      x-code-samples:
-      - lang: js
-        label: JavaScript
-        source: |
-          import LAMP from 'lamp-core'
-          await LAMP.connect({ serverAddress: "api.lamp.digital", accessKey: "email@address.com", secretKey: "password" })
-          // function-specific sample code here
-      - lang: python
-        label: Python
-        source: |
-          import LAMP
-          LAMP.connect("api.lamp.digital", "email@address.com", "password")
-          # function-specific sample code here
-      - lang: go
-        label: R Script
-        source: |
-          library(LAMP)
-          LAMP.connect("api.lamp.digital", "email@address.com", "password")
-          # function-specific sample code here
-    post:
-      operationId: Participant.create_credential
-      summary: Create a Credential for a Participant.
-      description: ''
-      tags:
-      - Participant
-      parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: string
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-      responses:
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  data:
-                    type: object
-        default:
-          description: Error
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/Error"
-      security:
-      - Authorization: []
-      x-code-samples:
-      - lang: js
-        label: JavaScript
-        source: |
-          import LAMP from 'lamp-core'
-          await LAMP.connect({ serverAddress: "api.lamp.digital", accessKey: "email@address.com", secretKey: "password" })
-          // function-specific sample code here
-      - lang: python
-        label: Python
-        source: |
-          import LAMP
-          LAMP.connect("api.lamp.digital", "email@address.com", "password")
-          # function-specific sample code here
-      - lang: go
-        label: R Script
-        source: |
-          library(LAMP)
-          LAMP.connect("api.lamp.digital", "email@address.com", "password")
-          # function-specific sample code here
-  "/participant/{id}/credential/{access_key}":
-    put:
-      operationId: Participant.update_credential
-      summary: Update a Credential for a Participant.
-      description: ''
-      tags:
-      - Participant
-      parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: string
-      - name: access_key
-        in: path
-        required: true
-        schema:
-          type: string
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-      responses:
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  data:
-                    type: object
-        default:
-          description: Error
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/Error"
-      security:
-      - Authorization: []
-      x-code-samples:
-      - lang: js
-        label: JavaScript
-        source: |
-          import LAMP from 'lamp-core'
-          await LAMP.connect({ serverAddress: "api.lamp.digital", accessKey: "email@address.com", secretKey: "password" })
-          // function-specific sample code here
-      - lang: python
-        label: Python
-        source: |
-          import LAMP
-          LAMP.connect("api.lamp.digital", "email@address.com", "password")
-          # function-specific sample code here
-      - lang: go
-        label: R Script
-        source: |
-          library(LAMP)
-          LAMP.connect("api.lamp.digital", "email@address.com", "password")
-          # function-specific sample code here
-    delete:
-      operationId: Participant.delete_credential
-      summary: Delete a Credential for a Participant.
-      description: ''
-      tags:
-      - Participant
-      parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: string
-      - name: access_key
-        in: path
-        required: true
-        schema:
-          type: string
-      responses:
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  data:
-                    type: object
-        default:
-          description: Error
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/Error"
-      security:
-      - Authorization: []
-      x-code-samples:
-      - lang: js
-        label: JavaScript
-        source: |
-          import LAMP from 'lamp-core'
-          await LAMP.connect({ serverAddress: "api.lamp.digital", accessKey: "email@address.com", secretKey: "password" })
-          // function-specific sample code here
-      - lang: python
-        label: Python
-        source: |
-          import LAMP
-          LAMP.connect("api.lamp.digital", "email@address.com", "password")
-          # function-specific sample code here
-      - lang: go
-        label: R Script
-        source: |
-          library(LAMP)
-          LAMP.connect("api.lamp.digital", "email@address.com", "password")
-          # function-specific sample code here
-  "/activity/{id}/tag":
-    get:
-      operationId: Activity.list_tags
-      summary: List all Tags set for or by the Activity.
-      description: ''
-      tags:
-      - Activity
-      parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: string
-      responses:
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  data:
-                    type: array
-                    items:
-                      type: string
-        default:
-          description: Error
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/Error"
-      security:
-      - Authorization: []
-      x-code-samples:
-      - lang: js
-        label: JavaScript
-        source: |
-          import LAMP from 'lamp-core'
-          await LAMP.connect({ serverAddress: "api.lamp.digital", accessKey: "email@address.com", secretKey: "password" })
-          // function-specific sample code here
-      - lang: python
-        label: Python
-        source: |
-          import LAMP
-          LAMP.connect("api.lamp.digital", "email@address.com", "password")
-          # function-specific sample code here
-      - lang: go
-        label: R Script
-        source: |
-          library(LAMP)
-          LAMP.connect("api.lamp.digital", "email@address.com", "password")
-          # function-specific sample code here
-  "/activity/{id}/tag/{key}":
-    get:
-      operationId: Activity.get_tag
-      summary: Get a Tag set for or by the Activity.
-      description: ''
-      tags:
-      - Activity
-      parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: string
-      - name: key
-        in: path
-        required: true
-        schema:
-          type: string
-      responses:
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  data:
-                    type: object
-                    additionalProperties: true
-        default:
-          description: Error
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/Error"
-      security:
-      - Authorization: []
-      x-code-samples:
-      - lang: js
-        label: JavaScript
-        source: |
-          import LAMP from 'lamp-core'
-          await LAMP.connect({ serverAddress: "api.lamp.digital", accessKey: "email@address.com", secretKey: "password" })
-          // function-specific sample code here
-      - lang: python
-        label: Python
-        source: |
-          import LAMP
-          LAMP.connect("api.lamp.digital", "email@address.com", "password")
-          # function-specific sample code here
-      - lang: go
-        label: R Script
-        source: |
-          library(LAMP)
-          LAMP.connect("api.lamp.digital", "email@address.com", "password")
-          # function-specific sample code here
-  "/activity/{id}/tag/{key}/{target}":
-    put:
-      operationId: Activity.set_tag
-      summary: Set a Tag for the Activity or its childen.
-      description: ''
-      tags:
-      - Activity
-      parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: string
-      - name: key
-        in: path
-        required: true
-        schema:
-          type: string
-      - name: target
-        in: path
-        required: true
-        schema:
-          type: string
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-      responses:
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  data:
-                    type: object
-        default:
-          description: Error
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/Error"
-      security:
-      - Authorization: []
-      x-code-samples:
-      - lang: js
-        label: JavaScript
-        source: |
-          import LAMP from 'lamp-core'
-          await LAMP.connect({ serverAddress: "api.lamp.digital", accessKey: "email@address.com", secretKey: "password" })
-          // function-specific sample code here
-      - lang: python
-        label: Python
-        source: |
-          import LAMP
-          LAMP.connect("api.lamp.digital", "email@address.com", "password")
-          # function-specific sample code here
-      - lang: go
-        label: R Script
-        source: |
-          library(LAMP)
-          LAMP.connect("api.lamp.digital", "email@address.com", "password")
-          # function-specific sample code here
-  "/activity/{id}/credential":
-    get:
-      operationId: Activity.list_credentials
-      summary: List all Credentials for an Activity.
-      description: ''
-      tags:
-      - Activity
-      parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: string
-      - name: transform
-        in: query
-        schema:
-          type: string
-      responses:
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  data:
-                    type: array
-                    items:
-                      "$ref": "#/components/schemas/Credential"
-        default:
-          description: Error
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/Error"
-      security:
-      - Authorization: []
-      x-code-samples:
-      - lang: js
-        label: JavaScript
-        source: |
-          import LAMP from 'lamp-core'
-          await LAMP.connect({ serverAddress: "api.lamp.digital", accessKey: "email@address.com", secretKey: "password" })
-          // function-specific sample code here
-      - lang: python
-        label: Python
-        source: |
-          import LAMP
-          LAMP.connect("api.lamp.digital", "email@address.com", "password")
-          # function-specific sample code here
-      - lang: go
-        label: R Script
-        source: |
-          library(LAMP)
-          LAMP.connect("api.lamp.digital", "email@address.com", "password")
-          # function-specific sample code here
-    post:
-      operationId: Activity.create_credential
-      summary: Create a Credential for an Activity.
-      description: ''
-      tags:
-      - Activity
-      parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: string
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-      responses:
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  data:
-                    type: object
-        default:
-          description: Error
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/Error"
-      security:
-      - Authorization: []
-      x-code-samples:
-      - lang: js
-        label: JavaScript
-        source: |
-          import LAMP from 'lamp-core'
-          await LAMP.connect({ serverAddress: "api.lamp.digital", accessKey: "email@address.com", secretKey: "password" })
-          // function-specific sample code here
-      - lang: python
-        label: Python
-        source: |
-          import LAMP
-          LAMP.connect("api.lamp.digital", "email@address.com", "password")
-          # function-specific sample code here
-      - lang: go
-        label: R Script
-        source: |
-          library(LAMP)
-          LAMP.connect("api.lamp.digital", "email@address.com", "password")
-          # function-specific sample code here
-  "/activity/{id}/credential/{access_key}":
-    put:
-      operationId: Activity.update_credential
-      summary: Update a Credential for an Activity.
-      description: ''
-      tags:
-      - Activity
-      parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: string
-      - name: access_key
-        in: path
-        required: true
-        schema:
-          type: string
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-      responses:
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  data:
-                    type: object
-        default:
-          description: Error
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/Error"
-      security:
-      - Authorization: []
-      x-code-samples:
-      - lang: js
-        label: JavaScript
-        source: |
-          import LAMP from 'lamp-core'
-          await LAMP.connect({ serverAddress: "api.lamp.digital", accessKey: "email@address.com", secretKey: "password" })
-          // function-specific sample code here
-      - lang: python
-        label: Python
-        source: |
-          import LAMP
-          LAMP.connect("api.lamp.digital", "email@address.com", "password")
-          # function-specific sample code here
-      - lang: go
-        label: R Script
-        source: |
-          library(LAMP)
-          LAMP.connect("api.lamp.digital", "email@address.com", "password")
-          # function-specific sample code here
-    delete:
-      operationId: Activity.delete_credential
-      summary: Delete a Credential for an Activity.
-      description: ''
-      tags:
-      - Activity
-      parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: string
-      - name: access_key
-        in: path
-        required: true
-        schema:
-          type: string
-      responses:
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  data:
-                    type: object
-        default:
-          description: Error
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/Error"
-      security:
-      - Authorization: []
-      x-code-samples:
-      - lang: js
-        label: JavaScript
-        source: |
-          import LAMP from 'lamp-core'
-          await LAMP.connect({ serverAddress: "api.lamp.digital", accessKey: "email@address.com", secretKey: "password" })
-          // function-specific sample code here
-      - lang: python
-        label: Python
-        source: |
-          import LAMP
-          LAMP.connect("api.lamp.digital", "email@address.com", "password")
-          # function-specific sample code here
-      - lang: go
-        label: R Script
-        source: |
-          library(LAMP)
-          LAMP.connect("api.lamp.digital", "email@address.com", "password")
-          # function-specific sample code here
-  "/sensor/{id}/tag":
-    get:
-      operationId: Sensor.list_tags
-      summary: List all Tags set for or by the Sensor.
-      description: ''
-      tags:
-      - Sensor
-      parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: string
-      responses:
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  data:
-                    type: array
-                    items:
-                      type: string
-        default:
-          description: Error
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/Error"
-      security:
-      - Authorization: []
-      x-code-samples:
-      - lang: js
-        label: JavaScript
-        source: |
-          import LAMP from 'lamp-core'
-          await LAMP.connect({ serverAddress: "api.lamp.digital", accessKey: "email@address.com", secretKey: "password" })
-          // function-specific sample code here
-      - lang: python
-        label: Python
-        source: |
-          import LAMP
-          LAMP.connect("api.lamp.digital", "email@address.com", "password")
-          # function-specific sample code here
-      - lang: go
-        label: R Script
-        source: |
-          library(LAMP)
-          LAMP.connect("api.lamp.digital", "email@address.com", "password")
-          # function-specific sample code here
-  "/sensor/{id}/tag/{key}":
-    get:
-      operationId: Sensor.get_tag
-      summary: Get a Tag set for or by the Sensor.
-      description: ''
-      tags:
-      - Sensor
-      parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: string
-      - name: key
-        in: path
-        required: true
-        schema:
-          type: string
-      responses:
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  data:
-                    type: object
-                    additionalProperties: true
-        default:
-          description: Error
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/Error"
-      security:
-      - Authorization: []
-      x-code-samples:
-      - lang: js
-        label: JavaScript
-        source: |
-          import LAMP from 'lamp-core'
-          await LAMP.connect({ serverAddress: "api.lamp.digital", accessKey: "email@address.com", secretKey: "password" })
-          // function-specific sample code here
-      - lang: python
-        label: Python
-        source: |
-          import LAMP
-          LAMP.connect("api.lamp.digital", "email@address.com", "password")
-          # function-specific sample code here
-      - lang: go
-        label: R Script
-        source: |
-          library(LAMP)
-          LAMP.connect("api.lamp.digital", "email@address.com", "password")
-          # function-specific sample code here
-  "/sensor/{id}/tag/{key}/{target}":
-    put:
-      operationId: Sensor.set_tag
-      summary: Set a Tag for the Sensor or its childen.
-      description: ''
-      tags:
-      - Sensor
-      parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: string
-      - name: key
-        in: path
-        required: true
-        schema:
-          type: string
-      - name: target
-        in: path
-        required: true
-        schema:
-          type: string
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-      responses:
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  data:
-                    type: object
-        default:
-          description: Error
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/Error"
-      security:
-      - Authorization: []
-      x-code-samples:
-      - lang: js
-        label: JavaScript
-        source: |
-          import LAMP from 'lamp-core'
-          await LAMP.connect({ serverAddress: "api.lamp.digital", accessKey: "email@address.com", secretKey: "password" })
-          // function-specific sample code here
-      - lang: python
-        label: Python
-        source: |
-          import LAMP
-          LAMP.connect("api.lamp.digital", "email@address.com", "password")
-          # function-specific sample code here
-      - lang: go
-        label: R Script
-        source: |
-          library(LAMP)
-          LAMP.connect("api.lamp.digital", "email@address.com", "password")
-          # function-specific sample code here
-  "/sensor/{id}/credential":
-    get:
-      operationId: Sensor.list_credentials
-      summary: List all Credentials for a Sensor.
-      description: ''
-      tags:
-      - Sensor
-      parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: string
-      - name: transform
-        in: query
-        schema:
-          type: string
-      responses:
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  data:
-                    type: array
-                    items:
-                      "$ref": "#/components/schemas/Credential"
-        default:
-          description: Error
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/Error"
-      security:
-      - Authorization: []
-      x-code-samples:
-      - lang: js
-        label: JavaScript
-        source: |
-          import LAMP from 'lamp-core'
-          await LAMP.connect({ serverAddress: "api.lamp.digital", accessKey: "email@address.com", secretKey: "password" })
-          // function-specific sample code here
-      - lang: python
-        label: Python
-        source: |
-          import LAMP
-          LAMP.connect("api.lamp.digital", "email@address.com", "password")
-          # function-specific sample code here
-      - lang: go
-        label: R Script
-        source: |
-          library(LAMP)
-          LAMP.connect("api.lamp.digital", "email@address.com", "password")
-          # function-specific sample code here
-    post:
-      operationId: Sensor.create_credential
-      summary: Create a Credential for a Sensor.
-      description: ''
-      tags:
-      - Sensor
-      parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: string
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-      responses:
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  data:
-                    type: object
-        default:
-          description: Error
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/Error"
-      security:
-      - Authorization: []
-      x-code-samples:
-      - lang: js
-        label: JavaScript
-        source: |
-          import LAMP from 'lamp-core'
-          await LAMP.connect({ serverAddress: "api.lamp.digital", accessKey: "email@address.com", secretKey: "password" })
-          // function-specific sample code here
-      - lang: python
-        label: Python
-        source: |
-          import LAMP
-          LAMP.connect("api.lamp.digital", "email@address.com", "password")
-          # function-specific sample code here
-      - lang: go
-        label: R Script
-        source: |
-          library(LAMP)
-          LAMP.connect("api.lamp.digital", "email@address.com", "password")
-          # function-specific sample code here
-  "/sensor/{id}/credential/{access_key}":
-    put:
-      operationId: Sensor.update_credential
-      summary: Update a Credential for a Sensor.
-      description: ''
-      tags:
-      - Sensor
-      parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: string
-      - name: access_key
-        in: path
-        required: true
-        schema:
-          type: string
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-      responses:
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  data:
-                    type: object
-        default:
-          description: Error
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/Error"
-      security:
-      - Authorization: []
-      x-code-samples:
-      - lang: js
-        label: JavaScript
-        source: |
-          import LAMP from 'lamp-core'
-          await LAMP.connect({ serverAddress: "api.lamp.digital", accessKey: "email@address.com", secretKey: "password" })
-          // function-specific sample code here
-      - lang: python
-        label: Python
-        source: |
-          import LAMP
-          LAMP.connect("api.lamp.digital", "email@address.com", "password")
-          # function-specific sample code here
-      - lang: go
-        label: R Script
-        source: |
-          library(LAMP)
-          LAMP.connect("api.lamp.digital", "email@address.com", "password")
-          # function-specific sample code here
-    delete:
-      operationId: Sensor.delete_credential
-      summary: Delete a Credential for a Sensor.
-      description: ''
-      tags:
-      - Sensor
-      parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: string
-      - name: access_key
-        in: path
-        required: true
-        schema:
-          type: string
-      responses:
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  data:
-                    type: object
         default:
           description: Error
           content:
