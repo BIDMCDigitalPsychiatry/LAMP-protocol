@@ -18,7 +18,7 @@ servers:
       description: A specific API server instance (HTTPS required).
 tags:
 - name: API
-  description: Advanced query and schema endpoints.
+  description: Operations related to the management of global data, server status, or any non-specific Resource type.
 - name: ActivitySpec
   description: Operations related to the management of ActivitySpecs.
 - name: SensorSpec
@@ -267,7 +267,7 @@ paths:
     delete:
       operationId: ActivitySpec.delete
       summary: Delete an ActivitySpec.
-      description: Delete an ActivitySpec.
+      description: Delete an ActivitySpec. This action irreversably deletes all Activities made from this ActivitySpec, including any and all ActivityEvents.
       tags:
       - ActivitySpec
       parameters:
@@ -521,7 +521,7 @@ paths:
     delete:
       operationId: SensorSpec.delete
       summary: Delete a SensorSpec.
-      description: Delete a SensorSpec.
+      description: Delete a SensorSpec. This action irreversably deletes all Sensors made from this SensorSpec, including any and all SensorEvents.
       tags:
       - SensorSpec
       parameters:
@@ -775,7 +775,7 @@ paths:
     delete:
       operationId: TagSpec.delete
       summary: Delete an TagSpec.
-      description: Delete an TagSpec.
+      description: Delete an TagSpec. This action does not delete any existing Tags, but will stop any Automations from executing and disable any validation or data protection.
       tags:
       - TagSpec
       parameters:
@@ -928,7 +928,8 @@ paths:
     get:
       operationId: Researcher.list
       summary: List all Researchers.
-      description: This action requires system administrator privileges.
+      description: |
+        This action requires system administrator privileges. The deprecated name for this operation is `Researcher.all`.
       tags:
       - Researcher
       parameters: []
@@ -1030,7 +1031,7 @@ paths:
     delete:
       operationId: Researcher.delete
       summary: Delete a Researcher.
-      description: Delete a Researcher.
+      description: Delete a Researcher. This action irreversably deletes all child Studies, including all Participants, Activities, Sensors, ActivityEvents, and SensorEvents.
       tags:
       - Researcher
       parameters:
@@ -1134,7 +1135,7 @@ paths:
       summary: Create a Study for a Researcher.
       description: Create a Study for a Researcher.
       tags:
-      - Researcher
+      - Study
       parameters:
       - name: id
         in: path
@@ -1187,9 +1188,9 @@ paths:
     get:
       operationId: Study.list
       summary: List all Studies for a Researcher.
-      description: List all studies for a Researcher.
+      description: List all studies for a Researcher. The deprecated name for this operation is `Study.all_by_researcher`.
       tags:
-      - Researcher
+      - Study
       parameters:
       - name: id
         in: path
@@ -1294,7 +1295,7 @@ paths:
     delete:
       operationId: Study.delete
       summary: Delete a Study.
-      description: Delete a Study.
+      description: Delete a Study. This action irreversably deletes all child Participants, Activities, Sensors, including ActivityEvents, and SensorEvents.
       tags:
       - Study
       parameters:
@@ -1398,7 +1399,7 @@ paths:
       summary: Create a Participant for a Study.
       description: Create a Participant for a Study.
       tags:
-      - Study
+      - Participant
       parameters:
       - name: id
         in: path
@@ -1451,9 +1452,9 @@ paths:
     get:
       operationId: Participant.list
       summary: List all Participants for a Study.
-      description: List all Participants in a Study.
+      description: List all Participants in a Study. The deprecated name for this operation is `Participant.all_by_study` and `Participant.all_by_researcher`.
       tags:
-      - Study
+      - Participant
       parameters:
       - name: id
         in: path
@@ -1558,7 +1559,7 @@ paths:
     delete:
       operationId: Participant.delete
       summary: Delete a Participant.
-      description: All owned data or event streams will be permanently deleted.
+      description: Deletes a Participant. This action irreversably deletes all ActivityEvents, and SensorEvents.
       tags:
       - Participant
       parameters:
@@ -1662,7 +1663,7 @@ paths:
       summary: Create an Activity for a Study.
       description: Create an Activity for a Study.
       tags:
-      - Study
+      - Activity
       parameters:
       - name: id
         in: path
@@ -1715,9 +1716,9 @@ paths:
     get:
       operationId: Activity.list
       summary: List all Activities for a Study.
-      description: List all Activities available to Participants of a Study.
+      description: List all Activities available to Participants of a Study. The deprecated name for this operation is `Activity.all_by_study`.
       tags:
-      - Study
+      - Activity
       parameters:
       - name: id
         in: path
@@ -1822,7 +1823,7 @@ paths:
     delete:
       operationId: Activity.delete
       summary: Delete an Activity.
-      description: Delete an Activity.
+      description: Delete an Activity. This action irreversably deletes all ActivityEvents with this Activity that were generated by Participants in the same Study.
       tags:
       - Activity
       parameters:
@@ -1926,7 +1927,7 @@ paths:
       summary: Create a Sensor for a Study.
       description: Create a Sensor for a Study.
       tags:
-      - Study
+      - Sensor
       parameters:
       - name: id
         in: path
@@ -1981,7 +1982,7 @@ paths:
       summary: List all Sensors in a Study.
       description: List all Sensors available to Participants of a Study.
       tags:
-      - Study
+      - Sensor
       parameters:
       - name: id
         in: path
@@ -2086,7 +2087,7 @@ paths:
     delete:
       operationId: Sensor.delete
       summary: Delete a Sensor.
-      description: Delete a Sensor.
+      description: Delete a Sensor. This action irreversably deletes all SensorEvents with this Sensor that were generated by Participants in the same Study.
       tags:
       - Sensor
       parameters:
@@ -2188,9 +2189,9 @@ paths:
     get:
       operationId: Activity.list_shared
       summary: List all Activities in a Study shared by a Participant.
-      description: List all Activities available to a Participant.
+      description: **[DEPRECATED: USE `Activity.list` INSTEAD!]** List all Activities available to a Participant.
       tags:
-      - Participant
+      - Activity
       parameters:
       - name: id
         in: path
@@ -2240,9 +2241,9 @@ paths:
     get:
       operationId: Sensor.list_shared
       summary: List all Sensors in a Study shared by a Participant.
-      description: List all Sensors available to a Participant.
+      description: **[DEPRECATED: USE `Sensor.list` INSTEAD!]** List all Sensors available to a Participant.
       tags:
-      - Participant
+      - Sensor
       parameters:
       - name: id
         in: path
@@ -2292,7 +2293,7 @@ paths:
     get:
       operationId: Participant.list_shared1
       summary: List all Participants in a Study shared by an Activity.
-      description: List all Participants available to an Activity.
+      description: **[DEPRECATED: USE `Participant.list` INSTEAD!]** List all Participants available to an Activity.
       tags:
       - Activity
       parameters:
@@ -2344,7 +2345,7 @@ paths:
     get:
       operationId: Participant.list_shared2
       summary: List all Participants in a Study shared by a Sensor.
-      description: List all Participants available to a Sensor.
+      description: **[DEPRECATED: USE `Participant.list` INSTEAD!]** List all Participants available to a Sensor.
       tags:
       - Sensor
       parameters:
@@ -2455,7 +2456,7 @@ paths:
     get:
       operationId: ActivityEvent.list
       summary: Query ActivityEvents for a Participant.
-      description: List ActivityEvents produced by a Participant.
+      description: List ActivityEvents produced by a Participant. The deprecated name for this operation is `ActivityEvent.all_by_participant`.
       tags:
       - ActivityEvent
       parameters:
@@ -2594,7 +2595,7 @@ paths:
     get:
       operationId: SensorEvent.list
       summary: Query SensorEvents for a Participant.
-      description: List SensorEvents produced by a Participant.
+      description: List SensorEvents produced by a Participant. The deprecated name for this operation is `SensorEvent.all_by_participant`.
       tags:
       - SensorEvent
       parameters:
@@ -2674,7 +2675,8 @@ paths:
     get:
       operationId: Tag.list
       summary: List all Tags set for or by a Researcher, Study, Participant, Activity, or Sensor.
-      description: ''
+      description: |
+        The deprecated name for this operation is `Type.list_attachments`.
       tags:
       - Tag
       parameters:
@@ -2726,7 +2728,8 @@ paths:
     get:
       operationId: Tag.get
       summary: Get a Tag set for or by a Researcher, Study, Participant, Activity, or Sensor.
-      description: ''
+      description: |
+        The deprecated name for this operation is `Type.get_attachment`.
       tags:
       - Tag
       parameters:
@@ -2782,7 +2785,8 @@ paths:
     put:
       operationId: Tag.set
       summary: Set a Tag for a Researcher, Study, Participant, Activity, or Sensor, or its childen.
-      description: ''
+      description: |
+        The deprecated name for this operation is `Type.set_attachment`.
       tags:
       - Tag
       parameters:
@@ -3015,7 +3019,8 @@ paths:
     delete:
       operationId: Credential.delete
       summary: Delete a Credential for a Researcher, Study, Participant, Activity, or Sensor.
-      description: ''
+      description: |
+        Deletes a Credential. This action does not delete any data but removes ALL (read and write) access for any bearers of this specific Credential. To simulate a "deactivation" for a Participant at the conclusion of a research study, delete the Credential provided to that Participant. This will prevent their device from collecting or uploading any sensor data, as well as prevent the user from interacting with the app or dashboard. 
       tags:
       - Credential
       parameters:
@@ -3125,9 +3130,9 @@ paths:
   "/type/{id}/parent":
     get:
       operationId: API.parent
-      summary: Find the Parent of the Object.
-      description: Get the parent type identifier of the data structure referenced
-        by the identifier.
+      summary: Find the parent of the Resource.
+      description: |
+        Get the parent type identifier of the Resource referenced by the identifier.
       tags:
       - API
       parameters:
