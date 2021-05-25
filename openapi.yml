@@ -2789,7 +2789,37 @@ paths:
     put:
       operationId: Tag.set
       summary: Set a Tag for a Researcher, Study, Participant, Activity, or Sensor, or its childen.
-      description: |
+      description: >
+        `Tag`s act as a hierarchical key-value store localized to each Resource. That is to say, `Participant` A has a
+        completely different key-value store instance than `Participant` B or `Activity` X. Furthermore, the resource 
+        hierarchy also influences the contents of the key-value store. If a `Researcher` sets a `Tag` "hello.testing" on
+        `Participant` A with the contents `"hello world"`, then `Participant` A will be able to query their tags and see
+        "hello.testing" exists, even though it was not created _by_ `Participant` A. The side-effect of this feature is 
+        called "tag masking": should `Participant` A now attempt to create "hello.testing" with the contents `"bye world"`,
+        this `Tag` _will be successfully saved_, but masked during retrieval by the version created by the `Researcher`.
+
+
+        There are four `target` types that act as a selector for _which_ key-value store will be manipulated. 
+        
+        1. `"me"`: Implicit self; Automatically substitute the `id` parameter as the `target`. See (2) for semantics.
+        
+        2. `id`: Explicit self. Manually specify the `id` parameter as the `target`. This selects the key-value store  
+        corresponding to the resource itself.
+
+        3. `{type}`: Implicit child. This should be one of "Researcher", "Study", "Participant", "Activity", or "Sensor". 
+        This selects the key-value store that spans __all children resources of that resource type__!! For example, a 
+        `Researcher` may create a `Tag` targetting `Participant` (all `Participant` children of all `Study` children of 
+        the `Researcher` resource itself), such that the `Tag` applies to __ANY__ child `Participant`.
+
+        4. `{id}`: Explicit child. This should be a specific child resource ID, and selects the key-value store of that 
+        specific child resource ONLY. 
+
+
+        In most cases, either (1) or (2) are what you will want to use, as these select self's specific key-value store. 
+        There are, however, a few cases for (3) and (4). For example, if a study needs to manage delivered gift card codes,
+        using (1)/(2) would be problematic, as this inadvertently allows the `Participant`s to modify the delivered codes.
+
+
         The deprecated name for this operation is `Type.set_attachment`.
       tags:
       - Tag
@@ -2799,22 +2829,28 @@ paths:
         required: true
         schema:
           type: string
+        description: >
+          The `id` of the Resource (`Researcher`, `Study`, `Participant`, `Activity`, or `Sensor`) to create or update a `Tag`. 
       - name: key
         in: path
         required: true
         schema:
           type: string
+        description: >
+          The `key` of the `Tag` in reverse-DNS format (i.e. `org.digitalpsych.college_study.demographics`). This must be unique
+          per key-value combination, otherwise the corresponding `value` will be overwritten (if the `Tag` does not already exist).
       - name: target
         in: path
         required: true
         schema:
           type: string
+        description: The `target` selector for the specific key-value store. (See description above.)
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              type: object
+              nullable: true
       responses:
         '200':
           description: Success
@@ -2823,8 +2859,8 @@ paths:
               schema:
                 type: object
                 properties:
-                  data:
-                    type: object
+                  data: 
+                    nullable: true
         default:
           description: Error
           content:
@@ -2855,7 +2891,7 @@ paths:
   "/type/{id}/credential":
     get:
       operationId: Credential.list
-      summary: List all Credentials for a Researcher, Study, Participant, Activity, or Sensor.
+      summary: List all Credentials for a Resource.
       description: ''
       tags:
       - Credential
@@ -2906,8 +2942,15 @@ paths:
           # function-specific sample code here
     post:
       operationId: Credential.create
-      summary: Add a Credential for a Researcher, Study, Participant, Activity, or Sensor.
-      description: ''
+      summary: Create a Credential for a Resource.
+      description: >
+        A Credential can be created to provide read-write access to the `Resource` as well as ALL children. 
+        For example, a `Credential` can be created for a Researcher to provide a user access to all Studies,
+        `Participants`, `Activities`, etc. `Credentials` created on `Researchers` and `Participants` are logically
+        consistent with an "admin" account and a "user" account, but `Credentials` can also be created for 
+        other `Resource` types, such as `Sensors` and `Activities`. A `Credential` for an `Activity` would yield the
+        ability to read/write the properties of the `Activity` (like `schedule` or `settings`), but also the
+        ability to __create and list__ `ActivityEvent`s generated from that `Activity` by `Participant`s. 
       tags:
       - Credential
       parameters:
@@ -2962,7 +3005,7 @@ paths:
   "/type/{id}/credential/{access_key}":
     put:
       operationId: Credential.set
-      summary: Update a Credential for a Researcher, Study, Participant, Activity, or Sensor.
+      summary: Update a Credential for a Resource.
       description: ''
       tags:
       - Credential
@@ -3022,9 +3065,13 @@ paths:
           # function-specific sample code here
     delete:
       operationId: Credential.delete
-      summary: Delete a Credential for a Researcher, Study, Participant, Activity, or Sensor.
-      description: |
-        Deletes a Credential. This action does not delete any data but removes ALL (read and write) access for any bearers of this specific Credential. To simulate a "deactivation" for a Participant at the conclusion of a research study, delete the Credential provided to that Participant. This will prevent their device from collecting or uploading any sensor data, as well as prevent the user from interacting with the app or dashboard. 
+      summary: Delete a Credential for a Resource.
+      description: >
+        Deletes a Credential. This action does not delete any data but removes ALL (read and write) 
+        access for any bearers of this specific Credential. To simulate a "deactivation" for a 
+        Participant at the conclusion of a research study, delete the Credential provided to that 
+        Participant. This will prevent their device from collecting or uploading any sensor data, 
+        as well as prevent the user from interacting with the app or dashboard. 
       tags:
       - Credential
       parameters:
@@ -3077,7 +3124,7 @@ paths:
           # function-specific sample code here
     get:
       operationId: Credential.get
-      summary: Get a single Credential for a Researcher, Study, Participant, Activity, or Sensor.
+      summary: Get a single Credential for a Resource.
       description: ''
       tags:
       - Credential
@@ -3135,8 +3182,10 @@ paths:
     get:
       operationId: API.parent
       summary: Find the parent of the Resource.
-      description: |
-        Get the parent type identifier of the Resource referenced by the identifier.
+      description: >
+        Get the parent type identifier of the Resource referenced by the identifier. This operation returns a dictionary
+        where each key is the recursive parent of the key before it. That is, if looking up the `parent` of a `Participant`,
+        the output will provide the parent `Study` as well the parent `Researcher` of that `Study`. 
       tags:
       - API
       parameters:
@@ -3156,6 +3205,9 @@ paths:
                   data:
                     type: object
                     additionalProperties: true
+                    example: 
+                      Study: '2bsjn29dkw8dy3'
+                      Researcher: 'jkdus3947u2sjhd'
         default:
           description: Error
           content:
