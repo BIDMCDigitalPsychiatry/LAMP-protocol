@@ -225,6 +225,9 @@ paths:
         required: true
         schema:
           type: string
+        description: >
+          This parameter is not a unique ID and is a reverse DNS format string (i.e. "org.digitalpsych.example"). 
+          The prefixes "lamp." and "digital.lamp." are reserved for internal use only.
       requestBody:
         required: true
         content:
@@ -280,6 +283,9 @@ paths:
         required: true
         schema:
           type: string
+        description: >
+          This parameter is not a unique ID and is a reverse DNS format string (i.e. "org.digitalpsych.example"). 
+          The prefixes "lamp." and "digital.lamp." are reserved for internal use only.
       responses:
         '200':
           description: Success
@@ -329,6 +335,9 @@ paths:
         required: true
         schema:
           type: string
+        description: >
+          This parameter is not a unique ID and is a reverse DNS format string (i.e. "org.digitalpsych.example"). 
+          The prefixes "lamp." and "digital.lamp." are reserved for internal use only.
       responses:
         '200':
           description: Success
@@ -479,6 +488,9 @@ paths:
         required: true
         schema:
           type: string
+        description: >
+          This parameter is not a unique ID and is a reverse DNS format string (i.e. "org.digitalpsych.example"). 
+          The prefixes "lamp." and "digital.lamp." are reserved for internal use only.
       requestBody:
         required: true
         content:
@@ -534,6 +546,9 @@ paths:
         required: true
         schema:
           type: string
+        description: >
+          This parameter is not a unique ID and is a reverse DNS format string (i.e. "org.digitalpsych.example"). 
+          The prefixes "lamp." and "digital.lamp." are reserved for internal use only.
       responses:
         '200':
           description: Success
@@ -583,6 +598,9 @@ paths:
         required: true
         schema:
           type: string
+        description: >
+          This parameter is not a unique ID and is a reverse DNS format string (i.e. "org.digitalpsych.example"). 
+          The prefixes "lamp." and "digital.lamp." are reserved for internal use only.
       responses:
         '200':
           description: Success
@@ -733,6 +751,9 @@ paths:
         required: true
         schema:
           type: string
+        description: >
+          This parameter is not a unique ID and is a reverse DNS format string (i.e. "org.digitalpsych.example"). 
+          The prefixes "lamp." and "digital.lamp." are reserved for internal use only.
       requestBody:
         required: true
         content:
@@ -788,6 +809,9 @@ paths:
         required: true
         schema:
           type: string
+        description: >
+          This parameter is not a unique ID and is a reverse DNS format string (i.e. "org.digitalpsych.example"). 
+          The prefixes "lamp." and "digital.lamp." are reserved for internal use only.
       responses:
         '200':
           description: Success
@@ -837,6 +861,9 @@ paths:
         required: true
         schema:
           type: string
+        description: >
+          This parameter is not a unique ID and is a reverse DNS format string (i.e. "org.digitalpsych.example"). 
+          The prefixes "lamp." and "digital.lamp." are reserved for internal use only.
       responses:
         '200':
           description: Success
@@ -989,6 +1016,7 @@ paths:
         required: true
         schema:
           type: string
+        description: The special case `"me"` parameter can also be used to implicitly refer to the Researcher ID of the currently authenticated user (Credential).
       requestBody:
         required: true
         content:
@@ -1044,6 +1072,7 @@ paths:
         required: true
         schema:
           type: string
+        description: The special case `"me"` parameter can also be used to implicitly refer to the Researcher ID of the currently authenticated user (Credential).
       responses:
         '200':
           description: Success
@@ -1093,6 +1122,7 @@ paths:
         required: true
         schema:
           type: string
+        description: The special case `"me"` parameter can also be used to implicitly refer to the Researcher ID of the currently authenticated user (Credential).
       responses:
         '200':
           description: Success
@@ -1146,6 +1176,7 @@ paths:
         required: true
         schema:
           type: string
+        description: The special case `"me"` parameter can also be used to implicitly refer to the Researcher ID of the currently authenticated user (Credential).
       requestBody:
         required: true
         content:
@@ -1201,6 +1232,7 @@ paths:
         required: true
         schema:
           type: string
+        description: The special case `"me"` parameter can also be used to implicitly refer to the Researcher ID of the currently authenticated user (Credential).
       responses:
         '200':
           description: Success
@@ -1253,6 +1285,7 @@ paths:
         required: true
         schema:
           type: string
+        description: The special case `"me"` parameter can also be used to implicitly refer to the Study ID of the currently authenticated user (Credential).
       requestBody:
         required: true
         content:
@@ -1308,6 +1341,7 @@ paths:
         required: true
         schema:
           type: string
+        description: The special case `"me"` parameter can also be used to implicitly refer to the Study ID of the currently authenticated user (Credential).
       responses:
         '200':
           description: Success
@@ -1357,6 +1391,7 @@ paths:
         required: true
         schema:
           type: string
+        description: The special case `"me"` parameter can also be used to implicitly refer to the Study ID of the currently authenticated user (Credential).
       responses:
         '200':
           description: Success
@@ -1410,6 +1445,7 @@ paths:
         required: true
         schema:
           type: string
+        description: The special case `"me"` parameter can also be used to implicitly refer to the Study ID of the currently authenticated user (Credential).
       requestBody:
         required: true
         content:
@@ -1465,6 +1501,7 @@ paths:
         required: true
         schema:
           type: string
+        description: The special case `"me"` parameter can also be used to implicitly refer to the Study ID of the currently authenticated user (Credential).
       responses:
         '200':
           description: Success
@@ -1517,6 +1554,7 @@ paths:
         required: true
         schema:
           type: string
+        description: The special case `"me"` parameter can also be used to implicitly refer to the Participant ID of the currently authenticated user (Credential).
       requestBody:
         required: true
         content:
@@ -1572,6 +1610,7 @@ paths:
         required: true
         schema:
           type: string
+        description: The special case `"me"` parameter can also be used to implicitly refer to the Participant ID of the currently authenticated user (Credential).
       responses:
         '200':
           description: Success
@@ -1621,6 +1660,7 @@ paths:
         required: true
         schema:
           type: string
+        description: The special case `"me"` parameter can also be used to implicitly refer to the Participant ID of the currently authenticated user (Credential).
       responses:
         '200':
           description: Success
@@ -1674,6 +1714,7 @@ paths:
         required: true
         schema:
           type: string
+        description: The special case `"me"` parameter can also be used to implicitly refer to the Study ID of the currently authenticated user (Credential).
       requestBody:
         required: true
         content:
@@ -1729,6 +1770,7 @@ paths:
         required: true
         schema:
           type: string
+        description: The special case `"me"` parameter can also be used to implicitly refer to the Study ID of the currently authenticated user (Credential).
       responses:
         '200':
           description: Success
@@ -1781,6 +1823,7 @@ paths:
         required: true
         schema:
           type: string
+        description: The special case `"me"` parameter can also be used to implicitly refer to the Activity ID of the currently authenticated user (Credential).
       requestBody:
         required: true
         content:
@@ -1836,6 +1879,7 @@ paths:
         required: true
         schema:
           type: string
+        description: The special case `"me"` parameter can also be used to implicitly refer to the Activity ID of the currently authenticated user (Credential).
       responses:
         '200':
           description: Success
@@ -1885,6 +1929,7 @@ paths:
         required: true
         schema:
           type: string
+        description: The special case `"me"` parameter can also be used to implicitly refer to the Activity ID of the currently authenticated user (Credential).
       responses:
         '200':
           description: Success
@@ -1938,6 +1983,7 @@ paths:
         required: true
         schema:
           type: string
+        description: The special case `"me"` parameter can also be used to implicitly refer to the Study ID of the currently authenticated user (Credential).
       requestBody:
         required: true
         content:
@@ -1993,6 +2039,7 @@ paths:
         required: true
         schema:
           type: string
+        description: The special case `"me"` parameter can also be used to implicitly refer to the Study ID of the currently authenticated user (Credential).
       responses:
         '200':
           description: Success
@@ -2045,6 +2092,7 @@ paths:
         required: true
         schema:
           type: string
+        description: The special case `"me"` parameter can also be used to implicitly refer to the Sensor ID of the currently authenticated user (Credential).
       requestBody:
         required: true
         content:
@@ -2100,6 +2148,7 @@ paths:
         required: true
         schema:
           type: string
+        description: The special case `"me"` parameter can also be used to implicitly refer to the Sensor ID of the currently authenticated user (Credential).
       responses:
         '200':
           description: Success
@@ -2149,6 +2198,7 @@ paths:
         required: true
         schema:
           type: string
+        description: The special case `"me"` parameter can also be used to implicitly refer to the Sensor ID of the currently authenticated user (Credential).
       responses:
         '200':
           description: Success
@@ -2202,6 +2252,7 @@ paths:
         required: true
         schema:
           type: string
+        description: The special case `"me"` parameter can also be used to implicitly refer to the Participant ID of the currently authenticated user (Credential).
       responses:
         '200':
           description: Success
@@ -2254,6 +2305,7 @@ paths:
         required: true
         schema:
           type: string
+        description: The special case `"me"` parameter can also be used to implicitly refer to the Participant ID of the currently authenticated user (Credential).
       responses:
         '200':
           description: Success
@@ -2306,6 +2358,7 @@ paths:
         required: true
         schema:
           type: string
+        description: The special case `"me"` parameter can also be used to implicitly refer to the Activity ID of the currently authenticated user (Credential).
       responses:
         '200':
           description: Success
@@ -2358,6 +2411,7 @@ paths:
         required: true
         schema:
           type: string
+        description: The special case `"me"` parameter can also be used to implicitly refer to the Sensor ID of the currently authenticated user (Credential).
       responses:
         '200':
           description: Success
@@ -2410,6 +2464,7 @@ paths:
         required: true
         schema:
           type: string
+        description: The special case `"me"` parameter can also be used to implicitly refer to the Participant ID of the currently authenticated user (Credential).
       requestBody:
         required: true
         content:
@@ -2469,6 +2524,7 @@ paths:
         required: true
         schema:
           type: string
+        description: The special case `"me"` parameter can also be used to implicitly refer to the Participant ID of the currently authenticated user (Credential).
       - name: origin
         in: query
         schema:
@@ -2549,6 +2605,7 @@ paths:
         required: true
         schema:
           type: string
+        description: The special case `"me"` parameter can also be used to implicitly refer to the Participant ID of the currently authenticated user (Credential).
       requestBody:
         required: true
         content:
@@ -2608,6 +2665,7 @@ paths:
         required: true
         schema:
           type: string
+        description: The special case `"me"` parameter can also be used to implicitly refer to the Participant ID of the currently authenticated user (Credential).
       - name: origin
         in: query
         schema:
@@ -2689,6 +2747,9 @@ paths:
         required: true
         schema:
           type: string
+        description: >
+          The `id` of the Resource (`Researcher`, `Study`, `Participant`, `Activity`, or `Sensor`) to create or update a `Tag`. 
+          The special case `"me"` parameter can also be used to implicitly refer to the Resource ID of the currently authenticated user (Credential).
       responses:
         '200':
           description: Success
@@ -2742,11 +2803,18 @@ paths:
         required: true
         schema:
           type: string
+        description: >
+          The `id` of the Resource (`Researcher`, `Study`, `Participant`, `Activity`, or `Sensor`) to create or update a `Tag`. 
+          The special case `"me"` parameter can also be used to implicitly refer to the Resource ID of the currently authenticated user (Credential).
       - name: key
         in: path
         required: true
         schema:
           type: string
+        description: >
+          The `key` of the `Tag` in reverse-DNS format (i.e. `org.digitalpsych.college_study.demographics`). This must be unique
+          per key-value combination, otherwise the corresponding `value` will be overwritten (if the `Tag` does not already exist).
+          The prefixes "lamp." and "digital.lamp." are reserved for internal use only.
       responses:
         '200':
           description: Success
@@ -2831,6 +2899,7 @@ paths:
           type: string
         description: >
           The `id` of the Resource (`Researcher`, `Study`, `Participant`, `Activity`, or `Sensor`) to create or update a `Tag`. 
+          The special case `"me"` parameter can also be used to implicitly refer to the Resource ID of the currently authenticated user (Credential).
       - name: key
         in: path
         required: true
@@ -2839,6 +2908,7 @@ paths:
         description: >
           The `key` of the `Tag` in reverse-DNS format (i.e. `org.digitalpsych.college_study.demographics`). This must be unique
           per key-value combination, otherwise the corresponding `value` will be overwritten (if the `Tag` does not already exist).
+          The prefixes "lamp." and "digital.lamp." are reserved for internal use only.
       - name: target
         in: path
         required: true
@@ -2901,6 +2971,7 @@ paths:
         required: true
         schema:
           type: string
+        description: The special case `"me"` parameter can also be used to implicitly refer to the Resource ID of the currently authenticated user (Credential).
       responses:
         '200':
           description: Success
@@ -2959,6 +3030,7 @@ paths:
         required: true
         schema:
           type: string
+        description: The special case `"me"` parameter can also be used to implicitly refer to the Resource ID of the currently authenticated user (Credential).
       requestBody:
         required: true
         content:
@@ -3015,6 +3087,7 @@ paths:
         required: true
         schema:
           type: string
+        description: The special case `"me"` parameter can also be used to implicitly refer to the Resource ID of the currently authenticated user (Credential).
       - name: access_key
         in: path
         required: true
@@ -3080,6 +3153,7 @@ paths:
         required: true
         schema:
           type: string
+        description: The special case `"me"` parameter can also be used to implicitly refer to the Resource ID of the currently authenticated user (Credential).
       - name: access_key
         in: path
         required: true
@@ -3134,6 +3208,7 @@ paths:
         required: true
         schema:
           type: string
+        description: The special case `"me"` parameter can also be used to implicitly refer to the Resource ID of the currently authenticated user (Credential).
       - name: access_key
         in: path
         required: true
@@ -3194,6 +3269,7 @@ paths:
         required: true
         schema:
           type: string
+        description: The special case `"me"` parameter can also be used to implicitly refer to the Resource ID of the currently authenticated user (Credential).
       responses:
         '200':
           description: Success
