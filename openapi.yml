@@ -3067,7 +3067,7 @@ paths:
         source: |
           import LAMP
           LAMP.connect("api.lamp.digital", "email@address.com", "password")
-          # function-specific sample code here
+          LAMP.Credential.create(TYPE_ID,body={'origin': TYPE_ID, 'access_key': USER_EMAIL, 'secret_key': USER_PASSWORD,'description': CREDENTIAL_DESCRIPTION})
       - lang: go
         label: R Script
         source: |
