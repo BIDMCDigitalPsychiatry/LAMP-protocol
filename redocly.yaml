@@ -1,0 +1,17 @@
+# Redocly CLI configuration for `npm run lint`.
+#
+# `.redocly.lint-ignore.yaml` records the problems that `openapi.yml` already had
+# before the sensor-stream change (8 errors, 61 warnings with @redocly/cli 1.34.5),
+# generated with `redocly lint --generate-ignore-file`. The `recommended-strict`
+# ruleset makes every rule of `recommended` an error, so lint fails on any new
+# problem, warning-level ones included. `test/lint-gate.test.mjs` checks this.
+#
+# One entry was added by hand: `no-invalid-media-type-examples` on the `200`
+# response of `GET /sensor_spec/{id}`. Redocly's example validator can't compile
+# the existing `JSONSchema` component, which uses OpenAPI 3.0's boolean
+# `exclusiveMinimum`. `test/sensor-specs.test.mjs` validates every example in
+# that response's `examples` map against the response schema instead.
+#
+# Don't add other entries to the ignore file; fix the problem instead.
+extends:
+  - recommended-strict
